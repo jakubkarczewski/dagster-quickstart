@@ -15,7 +15,7 @@ RUN ls -l install.sh
 
 RUN sh install.sh
 
-RUN [ -f "$HOME/.cargo/env" ] && . $HOME/.cargo/env || echo "$HOME/.cargo/env not found"
+RUN [ -f "$HOME/.local/bin/env" ] && . $HOME/.local/bin/env || echo "$HOME/.local/bin/env not found"
 
 RUN uv venv
 
