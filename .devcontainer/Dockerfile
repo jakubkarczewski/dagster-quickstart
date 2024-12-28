@@ -9,9 +9,16 @@ RUN apt-get update \
 COPY setup.py .
 
 
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh \
-    && . $HOME/.cargo/env  \
-    && uv venv \
-    && uv pip install --system -e .[dev]
+RUN curl -LsSf https://astral.sh/uv/install.sh -o install.sh
+
+RUN ls -l install.sh
+
+RUN sh install.sh
+
+RUN [ -f "$HOME/.cargo/env" ] && . $HOME/.cargo/env || echo "$HOME/.cargo/env not found"
+
+RUN uv venv
+
+RUN uv pip install --system -e .[dev]v]
 
 COPY . .
